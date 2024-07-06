@@ -111,10 +111,10 @@ services:
       - Gateway
 
   db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: go_foodflow
+    image: postgres:latest
+    env_file:
+      - .env
+    volumes:
+      - database/pg:/var/lib/postgresql/data
     ports:
       - "5432:5432"
