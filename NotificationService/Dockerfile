@@ -1,5 +1,5 @@
 # Stage 1: Build stage
-FROM golang:1.20-alpine AS build
+FROM golang:1.23rc1-alpine3.20 AS build
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ COPY . .
 RUN go build -o NotificationService .
 
 # Stage 2: Development stage
-FROM golang:1.20-alpine AS development
+FROM golang:1.23rc1-alpine3.20 AS development
 
 WORKDIR /app
 

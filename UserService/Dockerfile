@@ -1,5 +1,5 @@
 # Stage 1: Build stage
-FROM golang:1.20-alpine AS build
+FROM golang:1.23rc1-alpine3.20 AS build
 
 WORKDIR /app
 
@@ -13,10 +13,10 @@ RUN go mod tidy
 COPY . .
 
 # Build the Go application
-RUN go build -o UserService .
+RUN go build -o userservice .
 
 # Stage 2: Development stage
-FROM golang:1.20-alpine AS development
+FROM golang:1.23rc1-alpine3.20 AS development
 
 WORKDIR /app
 
@@ -35,7 +35,7 @@ FROM alpine:latest AS production
 WORKDIR /app
 
 # Copy the built application from the build stage
-COPY --from=build /app/UserService .
+COPY --from=build /app/userservice .
 
 # Run the Go application
-CMD ["./UserService"]
+CMD ["./userservice"]
