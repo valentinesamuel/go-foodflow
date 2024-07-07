@@ -13,7 +13,7 @@ RUN go mod tidy
 COPY . .
 
 # Build the Go application
-RUN go build -o NotificationService .
+RUN go build -o notificationservice .
 
 # Stage 2: Development stage
 FROM golang:1.23rc1-alpine3.20 AS development
@@ -26,6 +26,9 @@ COPY . .
 # Install dependencies
 RUN go mod tidy
 
+# Print environment variables
+RUN printenv
+
 # Command to run the application in development mode (can be customized)
 CMD ["go", "run", "."]
 
@@ -35,7 +38,13 @@ FROM alpine:latest AS production
 WORKDIR /app
 
 # Copy the built application from the build stage
-COPY --from=build /app/NotificationService .
+COPY --from=build /app/notificationservice .
+
+# Copy the .env file
+COPY .env .
+
+# Print environment variables
+RUN printenv
 
 # Run the Go application
-CMD ["./NotificationService"]
+CMD ["./notificationservice"]

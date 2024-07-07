@@ -26,6 +26,9 @@ COPY . .
 # Install dependencies
 RUN go mod tidy
 
+# Print environment variables
+RUN printenv
+
 # Command to run the application in development mode (can be customized)
 CMD ["go", "run", "."]
 
@@ -36,6 +39,12 @@ WORKDIR /app
 
 # Copy the built application from the build stage
 COPY --from=build /app/restaurantservice .
+
+# Copy the .env file
+COPY .env .
+
+# Print environment variables
+RUN printenv
 
 # Run the Go application
 CMD ["./restaurantservice"]

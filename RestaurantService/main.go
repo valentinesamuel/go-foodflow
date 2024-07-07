@@ -10,9 +10,9 @@ import (
 
 func main() {
 	
-	dbName := getEnvVar("PAYMENT_DB_NAME")
+	dbName := getEnvVar("RESTAURANT_DB_NAME")
 
-	fmt.Println("Hello Payment! 🚀 =>", dbName)
+	fmt.Println("Hello Restaurant! 🚀 =>", dbName)
 }
 
 func getEnvVar(key string) string {

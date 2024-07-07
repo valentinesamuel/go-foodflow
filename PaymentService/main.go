@@ -9,15 +9,17 @@ import (
 )
 
 func main() {
-	
+
 	dbName := getEnvVar("PAYMENT_DB_NAME")
 
 	fmt.Println("Hello Payment! 🚀 => ", dbName)
 }
 
 func getEnvVar(key string) string {
-	if err := godotenv.Load(".env"); err != nil {
-		log.Fatal("Error loading paymentsevice .env file📛")
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading payment service .env file📛")
 	}
 	return os.Getenv(key)
+
 }

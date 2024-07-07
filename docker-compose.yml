@@ -3,7 +3,7 @@ services:
     build:
       context: ./userservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./userservice/.env
     ports:
@@ -15,7 +15,7 @@ services:
     build:
       context: ./orderservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./orderservice/.env
     ports:
@@ -27,7 +27,7 @@ services:
     build:
       context: ./deliveryservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./deliveryservice/.env
     ports:
@@ -39,7 +39,7 @@ services:
     build:
       context: ./paymentservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./paymentservice/.env
     ports:
@@ -51,19 +51,20 @@ services:
     build:
       context: ./menuservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./menuservice/.env
     ports:
       - "5555:5555"
     depends_on:
       - db
+    # command: ["/bin/sh", "-c", "go version"]
 
   notificationservice:
     build:
       context: ./notificationservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./notificationservice/.env
     ports:
@@ -75,7 +76,7 @@ services:
     build:
       context: ./reviewservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./reviewservice/.env
     ports:
@@ -87,7 +88,7 @@ services:
     build:
       context: ./restaurantservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./restaurantservice/.env
     ports:
@@ -99,7 +100,7 @@ services:
     build:
       context: ./gatewayservice
       dockerfile: Dockerfile
-      target: ${TARGET:-production}
+      target: production
     env_file:
       - ./gatewayservice/.env
     ports:
@@ -124,26 +125,29 @@ services:
   # - reviewservice
   # - restaurantservice
 
-  nginx:
-    build: "./nginx"
-    ports:
-      - "80:80"
-    depends_on:
-      - userservice
-      - gatewayservice
-      - orderservice
-      - deliveryservice
-      - paymentservice
-      - menuservice
-      - notificationservice
-      - reviewservice
-      - restaurantservice
+  # nginx:
+  #   build: "./nginx"
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - userservice
+  #     - gatewayservice
+  #     - orderservice
+  #     - deliveryservice
+  #     - paymentservice
+  #     - menuservice
+  #     - notificationservice
+  #     - reviewservice
+  #     - restaurantservice
 
   db:
     image: postgres:latest
     env_file:
       - .env
     volumes:
-      - ./database/pg:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+volumes:
+  postgres_data:
