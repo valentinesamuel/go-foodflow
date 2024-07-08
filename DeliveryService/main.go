@@ -1,6 +1,7 @@
 package main
 
 import (
+	"DeliveryService/db"
 	"fmt"
 	"log"
 	"os"
@@ -9,7 +10,7 @@ import (
 )
 
 func main() {
-	
+	db.ConnectDeliveryDB()
 	dbName := getEnvVar("DELIVERY_DB_NAME")
 
 	fmt.Println("Hello Delivery! 🚀=>", dbName)

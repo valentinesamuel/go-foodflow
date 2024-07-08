@@ -3,7 +3,7 @@ services:
     build:
       context: ./userservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./userservice/.env
     ports:
@@ -15,7 +15,7 @@ services:
     build:
       context: ./orderservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./orderservice/.env
     ports:
@@ -27,7 +27,7 @@ services:
     build:
       context: ./deliveryservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./deliveryservice/.env
     ports:
@@ -39,7 +39,7 @@ services:
     build:
       context: ./paymentservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./paymentservice/.env
     ports:
@@ -51,7 +51,7 @@ services:
     build:
       context: ./menuservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./menuservice/.env
     ports:
@@ -64,7 +64,7 @@ services:
     build:
       context: ./notificationservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./notificationservice/.env
     ports:
@@ -76,7 +76,7 @@ services:
     build:
       context: ./reviewservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./reviewservice/.env
     ports:
@@ -88,7 +88,7 @@ services:
     build:
       context: ./restaurantservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./restaurantservice/.env
     ports:
@@ -100,7 +100,7 @@ services:
     build:
       context: ./gatewayservice
       dockerfile: Dockerfile
-      target: production
+      target: development
     env_file:
       - ./gatewayservice/.env
     ports:
@@ -108,22 +108,22 @@ services:
     depends_on:
       - db
 
-  # nginx:
-  #   image: nginx:alpine
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/nginx.conf
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  # - userservice
-  # - gatewayservice
-  # - orderservice
-  # - deliveryservice
-  # - paymentservice
-  # - menuservice
-  # - notificationservice
-  # - reviewservice
-  # - restaurantservice
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+    # - userservice
+    # - gatewayservice
+    # - orderservice
+    - deliveryservice
+    # - paymentservice
+    # - menuservice
+    # - notificationservice
+    # - reviewservice
+    # - restaurantservice
 
   # nginx:
   #   build: "./nginx"
@@ -146,8 +146,9 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
 volumes:
   postgres_data:
