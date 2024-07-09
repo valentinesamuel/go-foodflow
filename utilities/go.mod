@@ -1,4 +1,4 @@
-module go-foodlow/utilities
+module github.com/valentinesamuel/go-foodflow/utilities
 
 go 1.22.4
 
