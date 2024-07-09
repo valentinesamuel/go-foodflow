@@ -2,12 +2,12 @@ package routes
 
 import (
 	"DeliveryService/service"
-	"go-foodflow/utilities/models"
 	"net/http"
 	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/valentinesamuel/go-foodflow/utilities/models"
 )
 
 func CreateDeliveryTrackingController(c *gin.Context) {

@@ -2,7 +2,8 @@ package service
 
 import (
 	"DeliveryService/db"
-	"go-foodflow/utilities/models"
+
+	"github.com/valentinesamuel/go-foodflow/utilities/models"
 )
 
 func CreateDeliveryTrackingService(deliveryTracking *models.DeliveryTracking) (models.DeliveryTracking, error) {

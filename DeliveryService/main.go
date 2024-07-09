@@ -9,8 +9,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-
-	"go-foodflow/utilities/models"
+	"github.com/valentinesamuel/go-foodflow/utilities/models"
 )
 
 func main() {

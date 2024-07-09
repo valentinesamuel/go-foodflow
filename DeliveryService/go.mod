@@ -5,12 +5,10 @@ go 1.22.4
 require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/joho/godotenv v1.5.1
-	go-foodflow/utilities v0.0.0
+	github.com/valentinesamuel/go-foodflow/utilities v0.0.0-20240709013440-1cf16d99ca0b
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.10
 )
-
-replace go-foodflow/utilities => ../utilities
 
 require (
 	github.com/bytedance/sonic v1.11.6 // indirect
