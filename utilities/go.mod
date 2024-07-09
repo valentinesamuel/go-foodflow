@@ -1,4 +1,4 @@
-module utils
+module go-foodlow/utilities
 
 go 1.22.4
 
