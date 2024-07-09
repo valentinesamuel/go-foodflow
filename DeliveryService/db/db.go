@@ -23,6 +23,8 @@ func ConnectDeliveryDB() {
 
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=%s", host, user, password, dbname, port, sslmode)
 
+	fmt.Println("===>>>>>>>>>>>>>",dsn)
+
 	connection, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("ERR: Error connecting to the delivery database📛📛📛")

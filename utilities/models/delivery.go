@@ -13,6 +13,6 @@ type DeliveryTracking struct {
 	CurrentLatitude         float64        `gorm:"not null"`
 	CurrentLongitude        float64        `gorm:"not null"`
 	CreatedAt               time.Time      `gorm:"type:timestamp;not null;default:current_timestamp"`
-	UpdatedAt               time.Time      `gorm:"type:timestamp;not null;default:current_timestamp on update current_timestamp"`
+	UpdatedAt               time.Time      `gorm:"type:timestamp;not null;default:current_timestamp"`
 	DeletedAt               gorm.DeletedAt `gorm:"index"`
 }
